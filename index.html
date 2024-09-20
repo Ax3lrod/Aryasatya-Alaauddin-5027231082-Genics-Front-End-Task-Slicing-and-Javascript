@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: inter, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+      }
+
+      .main-container {
+        width: 800px;
+        margin: 40px auto;
+        padding: 24px;
+        background-color: #fff;
+        box-shadow: 0 4px 12px #0000001a;
+        border-radius: 12px;
+      }
+
+      .main-container h1 {
+        font-weight: 600;
+        font-size: 42px;
+        margin-bottom: 24px;
+        text-align: center;
+        color: #222;
+      }
+
+      .contact-input {
+        background-color: #fff;
+        padding: 24px;
+        margin-top: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px #0000001a;
+        margin-bottom: 32px;
+      }
+
+      .contact-input input {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+      }
+
+      .contact-input input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+
+      .contact-input button {
+        width: 100%;
+        padding: 12px;
+        font-family: Inter, sans-serif;
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .contact-input button:hover {
+        background-color: #0056b3;
+      }
+
+      .contact {
+        display: flex;
+        align-items: center;
+        margin: 16px 0;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px #0000001a;
+        transition: transform 0.3s ease;
+      }
+
+      .contact:hover {
+        transform: translateY(-3px);
+      }
+
+      .contact_image img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .contact_body {
+        margin-left: 16px;
+        flex: 1;
+      }
+
+      .contact_title {
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+
+      .contact_username {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .contact_delete {
+        padding: 8px 12px;
+        font-size: 16px;
+        background-color: #ff4d4d;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .contact_delete:hover {
+        background-color: #f33;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>Contact Apps</h1>
+      <h2>Add New Contact</h2>
+      <section class="contact-input">
+        <form class="contact_form">
+          <input
+            type="text"
+            placeholder="Name"
+            class="contact_input"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            class="contact_input"
+            required
+          />
+          <button class="add_button">Add</button>
+        </form>
+      </section>
+      <section class="contact-list">
+        <h2>Contact List</h2>
+        <section class="contact">
+          <div class="contact_image">
+            <img src="https://dummyjson.com/icon/emilys/70" alt="emily" />
+          </div>
+          <div class="contact_body">
+            <p class="contact_title">Emily Johnson</p>
+            <p class="contact_username">emily.johnson@x.dummyjson.com</p>
+          </div>
+          <button class="contact_delete">X</button>
+        </section>
+        <section class="contact">
+          <div class="contact_image">
+            <img src="https://dummyjson.com/icon/michaels/70" alt="michael" />
+          </div>
+          <div class="contact_body">
+            <p class="contact_title">Michael Williams</p>
+            <p class="contact_username">michael.williams@x.dummyjson.com</p>
+          </div>
+          <button class="contact_delete">X</button>
+        </section>
+        <section class="contact">
+          <div class="contact_image">
+            <img src="https://dummyjson.com/icon/sophias/70" alt="michael" />
+          </div>
+          <div class="contact_body">
+            <p class="contact_title">Sophia Brown</p>
+            <p class="contact_username">sophia.brown@x.dummyjson.com</p>
+          </div>
+          <button class="contact_delete">X</button>
+        </section>
+      </section>
+    </div>
+    <script>
+      const form = document.querySelector(".contact_form");
+      const contactList = document.querySelector(".contact-list");
+
+      function addDeleteFunctionality(contactElement) {
+        const deleteButton = contactElement.querySelector(".contact_delete");
+        deleteButton.addEventListener("click", function () {
+          contactElement.remove();
+        });
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const nameInput = form.querySelector('input[type="text"]').value;
+        const emailInput = form.querySelector('input[type="email"]').value;
+
+        const newContact = document.createElement("section");
+        newContact.classList.add("contact");
+        newContact.innerHTML = `
+          <div class="contact_image">
+            <img src="https://dummyjson.com/icon/${nameInput
+              .toLowerCase()
+              .replace(" ", "")}/70" alt="${nameInput}" />
+          </div>
+          <div class="contact_body">
+            <p class="contact_title">${nameInput}</p>
+            <p class="contact_username">${emailInput}</p>
+          </div>
+          <button class="contact_delete">X</button>
+        `;
+
+        contactList.appendChild(newContact);
+
+        form.reset();
+
+        addDeleteFunctionality(newContact);
+      });
+
+      document.querySelectorAll(".contact").forEach(function (contact) {
+        addDeleteFunctionality(contact);
+      });
+    </script>
+  </body>
+</html>
